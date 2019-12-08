@@ -1,0 +1,1 @@
+### Clipcann Geoloc plugin for Wordpress
