@@ -11,9 +11,37 @@
  * GitHub Plugin URI: https://github.com/ohdass-project/clipcann-geoloc
  */
 
-function setMapClipcannGeoloc() {
-    $Content = "<h3>leaflet here !</h3>";
-    return $Content;
+ if (!class_exists('ClipcannGeloc')){
+
+    class ClipcannGeloc {
+
+        function register() {
+
+            /**
+             * set shortCode [clipcann-geoloc] to get map
+             * set admin config page for map
+             */
+            add_shortcode('clipcann-geoloc', 'set_map');
+            add_action('admin_menu', array($this, 'add_admin_page'));
+        }
+
+        public function add_admin_page(){
+            add_menu_page('Clipcann Geoloc',' Clipcanngeoloc ','manage_option','clipcanng', array($this,'admin_page'),'dashicons-location', 110);
+        }
+
+        public function admin_page(){
+            // add template
+        }
+        
+        function set_map() {
+            $Content = "<h3>leaflet here !</h3>";
+            return $Content;
+        }
+
+    }
 }
 
-add_shortcode('clipcann-geoloc', 'setMapClipcannGeoloc');
+
+ $clipcannGeoloc = new ClipcannGeloc();
+ $clipcannGeoloc->register();
+
