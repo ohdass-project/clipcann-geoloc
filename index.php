@@ -12,9 +12,21 @@
  */
 
 
-function setMapClipcannGeoloc() {
-    $Content = "<h3>leaflet here !</h3>";
-    return $Content;
+class ClipcannGeoloc 
+{
+
+    public function __construct()
+    {
+        add_shortcode('clipcann-geoloc', 'setMapClipcannGeoloc');
+	}
+
+
+    function setMapClipcannGeoloc() {
+        $Content = "<h3>leaflet here !</h3>";
+        return $Content;
+    }
+     
+
 }
 
-add_shortcode('clipcann-geoloc', 'setMapClipcannGeoloc');
+new ClipcannGeoloc();
