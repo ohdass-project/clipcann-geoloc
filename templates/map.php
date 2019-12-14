@@ -1,8 +1,8 @@
-<form action="#">
     <div class="form-group">
-        <input type="text" name="citycode" placeholder="Entrez un code" id="citycode" required>
+        <p>Entrer le code postal pour localiser des magasins</p>
+        <input type="text" name="citycode" placeholder="Ex: 75012" id="citycode" required>
         <br>
-        <button type="submit">Rechercher</button>
+        <p id="err" style="color:red"></p>
+        <button id="coord" onclick="getCoord()">Rechercher</button>
     </div>
-</form>
 <div id="map" style="height:350px; width=550px;"></div>
