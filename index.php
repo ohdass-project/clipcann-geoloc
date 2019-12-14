@@ -15,20 +15,16 @@
 
     class Clipcann {
 
-        function __construct(){            
-        }
-
-
         function register() {
 
             /**
-             * set shortCode [clipcann-geoloc] to get map
+             * set shortCode [clipcann] to get map
              * set admin config page for map
              * load scripts js/css for plugin
              */
-            add_shortcode('clipcann-geoloc', 'set_map');
             add_action('admin_menu', array($this, 'add_admin_page'));
-            add_action('admin_enqueue_scripts', array($this, 'enqueue'));
+            add_action('wp_enqueue_scripts', array($this, 'enqueue'));
+            add_shortcode('clipcann', array($this,'set_map'));
         }
 
         public function add_admin_page(){
@@ -38,15 +34,16 @@
         public function admin_page(){
             require_once plugin_dir_path(__FILE__) . 'templates/admin.php';
         }
-        
-        function set_map() {
-            $Content = "<h3>leaflet here !</h3>";
-            return $Content;
+
+       public function set_map() {
+            require_once plugin_dir_path(__FILE__) . 'templates/map.php';
         }
 
         function enqueue() {
-            wp_enqueue_style('clipcannStyle', plugins_url('/assets/css/clipcann-geoloc-style.css', __FILE__));
+            wp_enqueue_style('clipcannStyle', plugins_url('/assets/css/clipcann-geoloc-style.css', __FILE__)); 
             wp_enqueue_script('clipcannJs', plugins_url('/assets/js/clipcann-geoloc.js', __FILE__));
+            wp_enqueue_style('leafletStyle', 'https://unpkg.com/leaflet@1.6.0/dist/leaflet.css'); 
+            wp_enqueue_script('leaflet', 'https://unpkg.com/leaflet@1.6.0/dist/leaflet.js');
         }
 
         function activate() {
