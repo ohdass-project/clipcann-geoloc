@@ -22,8 +22,8 @@
              * set admin config page for map
              * load scripts js/css for plugin
              */
-            add_action('admin_menu', array($this, 'add_admin_page'));
             add_action('wp_enqueue_scripts', array($this, 'enqueue'));
+            add_action('admin_menu', array($this, 'add_admin_page'));
             add_shortcode('clipcann', array($this,'set_map'));
         }
 
